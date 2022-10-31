@@ -1,12 +1,14 @@
 import "dotenv/config";
 import express from "express";
-import { homeRouter } from "./routes/home.routes";
-import { loginRouter } from "./routes/login.routes";
+import bodyParser from "body-parser";
+import * as home from "./routes/home.routes";
+import * as login from "./routes/login.routes";
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use('/', homeRouter);
-app.use('/login', loginRouter);
+app.use('/', home.router);
+app.use('/login', login.router);
 
 app.listen(process.env.PORT, (): void => {console.log(`App is listening on port ${process.env.PORT}`)});

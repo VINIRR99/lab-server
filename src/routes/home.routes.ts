@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 
-const homeRouter = Router();
+const router = Router();
 
-homeRouter.get('/', (req: Request, res: Response): void => {res.sendFile(process.cwd() + '/views/home.html')});
+router.get('/', (req: Request, res: Response): void => {res.sendFile(process.cwd() + '/views/home.html')});
 
-export { homeRouter };
+export { router };

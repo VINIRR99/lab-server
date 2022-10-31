@@ -1,7 +1,11 @@
 import { Router, Request, Response } from "express";
 
-const loginRouter = Router();
+const router = Router();
 
-loginRouter.get('/', (req: Request, res: Response): void => {res.sendFile(process.cwd() + '/views/login.html')});
+router.get('/', (req: Request, res: Response): void => {res.sendFile(process.cwd() + '/views/login.html')});
 
-export { loginRouter };
+router.post('/', (req: Request, res: Response): void => {
+    res.send(req.body);
+});
+
+export { router };
