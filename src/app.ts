@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import * as home from "./routes/home.routes";
 import * as login from "./routes/login.routes";
+import * as logout from "./routes/logout.routes";
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(cookieSession({ keys: ['sfgf'] }));
 
 app.use('/', home.router);
 app.use('/login', login.router);
+app.use('/logout', logout.router);
 
 app.listen(process.env.PORT, (): void => {console.log(`App is listening on port ${process.env.PORT}`)});
