@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieSession({ keys: ['sfgf'] }));
+if (process.env.COOKIE_SESSION_KEY) app.use(cookieSession({ keys: [process.env.COOKIE_SESSION_KEY] }));
 
 app.use('/', home.router);
 app.use('/login', login.router);
@@ -22,4 +22,6 @@ app.use(auth.middleware);
 
 app.use('/protected', exclusive.router);
 
-app.listen(process.env.PORT, (): void => {console.log(`App is listening on port ${process.env.PORT}`)});
+if(process.env.PORT) app.listen(process.env.PORT, (): void => {
+    console.log(`App is listening on port ${process.env.PORT}`);
+});
